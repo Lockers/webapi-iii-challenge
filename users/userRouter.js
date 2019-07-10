@@ -25,12 +25,23 @@ router.get('/users/:id', validateUserId, (req, res) => {
     res.status(200).json(req.user)
 });
 
-router.get('/users/:id/posts', validateUserId, (req, res) => {
-    
+router.get('/users/:id/posts', (req, res) => {
+    postDb.getById(req.params.id)
+        .then(response => {
+        res.status(200).json(response)
+        })
+        .catch(err => {
+        console.log(err)
+    })
 });
 
 router.delete('/users/:id', validateUserId, (req, res) => {
-    res.status(204)
+    db.remove(req.params.id)
+        .then(response => {
+            res.status(204).json({Message: response})
+        })
+        .catch(err =>
+        console.log(err))
 });
 
 router.put('/users/:id', validateUserId, (req, res) => {
