@@ -26,7 +26,7 @@ router.get('/users/:id', validateUserId, (req, res) => {
 });
 
 router.get('/users/:id/posts', validateUserId, (req, res) => {
-
+    
 });
 
 router.delete('/users/:id', validateUserId, (req, res) => {
@@ -88,7 +88,11 @@ async function validatePost(req, res, next) {
 
         if (Object.keys(req.body) != 0) {
             if (req.body.text) {
-                post = await postDb.insert(req.body)
+                const newPost = {
+                    user_id: req.params.id,
+                    text: req.body.text
+                }
+                post = await postDb.insert(newPost)
                 req.post = post
                 next()
             }
