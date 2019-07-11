@@ -14,7 +14,7 @@ class App extends React.Component {
   
   getUsers = () => {
     axios
-      .get('http://localhost:4000/users/')
+      .get('https://webapi-iii-matt.herokuapp.com/users')
       .then(res => {
         this.setState({users: res.data})
       })
@@ -29,7 +29,7 @@ class App extends React.Component {
       name: name
     } 
     axios
-      .post('http://localhost:4000/users/', user)
+      .post('https://webapi-iii-matt.herokuapp.com/users', user)
       .then(res => {
         const newUser = res.data
         this.setState({users: [...this.state.users, newUser]})
@@ -40,7 +40,7 @@ class App extends React.Component {
   }
   deleteUser = (id) => {
     axios
-      .delete(`http://localhost:4000/users/${id}`)
+      .delete(`https://webapi-iii-matt.herokuapp.com/users/${id}`)
       .then(res => {
       this.getUsers()
       })
@@ -51,7 +51,7 @@ class App extends React.Component {
 
   getPosts = (id) => {
     axios
-      .get(`http://localhost:4000/users/${id}/posts`)
+      .get(`https://webapi-iii-matt.herokuapp.com/users/${id}/posts`)
       .then(res => {
         this.setState({posts: res.data.text})
       })
