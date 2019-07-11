@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 const Div = Styled.div`
     display: flex;
     flex-direction: column;
+    color: red;
     text-align: center;
     margin: 10px auto;
     border: 1px solid red;
